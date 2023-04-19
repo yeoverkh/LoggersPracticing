@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration status="DEBUG">
+    <Appenders>
+        <RollingFile name="roll-by-size"
+                     fileName="target/log4j2/roll-by-size/app.log"
+                     filePattern="target/log4j2/roll-by-size/app.%i.log.gz"
+                     ignoreExceptions="false">
+
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %p %m%n</Pattern>
+            </PatternLayout>
+
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="25 KB"/>
+            </Policies>
+
+        </RollingFile>
+
+        <RollingFile name="roll-by-time"
+                     fileName="target/log4j2/roll-by-time/app.log"
+                     filePattern="target/log4j2/roll-by-time/app.%d{MM-dd-yyyy-HH-mm}.log.gz"
+                     ignoreExceptions="false">
+
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %p %m%n</Pattern>
+            </PatternLayout>
+
+            <TimeBasedTriggeringPolicy/>
+
+        </RollingFile>
+
+        <RollingFile name="roll-by-time-and-size"
+                     fileName="target/log4j2/roll-by-time-and-size/app.log"
+                     filePattern="target/log4j2/roll-by-time-and-size/app.%d{MM-dd-yyyy-HH-mm}.%i.log.gz"
+                     ignoreExceptions="false">
+
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %p %m%n</Pattern>
+            </PatternLayout>
+
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="25 KB"/>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+
+        <Root level="debug">
+            <AppenderRef ref="roll-by-size"/>
+        </Root>
+
+    </Loggers>
+</Configuration>

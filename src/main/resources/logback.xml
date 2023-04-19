@@ -1,0 +1,68 @@
+<configuration>
+    <appender name="roll-by-size" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <file>target/slf4j/roll-by-size/app.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>target/slf4j/roll-by-size/app.%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>3</maxIndex>
+        </rollingPolicy>
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>25KB</maxFileSize>
+        </triggeringPolicy>
+
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+
+    </appender>
+
+    <appender name="roll-by-time" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <file>target/slf4j/roll-by-time/app.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>target/slf4j/roll-by-time/app.%d{yyyy-MM-dd-HH-mm}.log</fileNamePattern>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %p %m%n</pattern>
+        </encoder>
+
+    </appender>
+
+    <appender name="roll-by-time-and-size" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <file>target/slf4j/roll-by-time-and-size/app.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>target/slf4j/roll-by-time-and-size/app.%d{yyyy-MM-dd-mm}.%i.log</fileNamePattern>
+            <maxFileSize>5KB</maxFileSize>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %p %m%n</pattern>
+        </encoder>
+
+    </appender>
+
+    <appender name="roll-by-day" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <file>target/slf4j/roll-by-day/app.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>target/slf4j/roll-by-day/app.%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss} %p - %m%n</pattern>
+        </encoder>
+
+    </appender>
+
+    <root level="debug">
+        <appender-ref ref="roll-by-day"/>
+    </root>
+</configuration>
